@@ -12,6 +12,7 @@ data class Repository(
     val name: String,
     val owner: Owner,
     val description: String,
+    @SerializedName("pulls_url") val pulls : String,
     @SerializedName("stargazers_count") val stars: String,
     @SerializedName("forks_count") val forks: String
 
