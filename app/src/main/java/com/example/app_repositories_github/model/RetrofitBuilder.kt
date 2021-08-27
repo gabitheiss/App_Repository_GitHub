@@ -1,5 +1,6 @@
 package com.example.app_repositories_github.model
 
+import com.example.app_repositories_github.services.UserService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -12,9 +13,9 @@ object RetrofitBuilder {
         .build()
 
 
-//    fun getPokeService(): PokeService{
-//        return retrofit.create(PokeService::class.java)
-//
-//    }
+    fun getUserService(): UserService{
+        return retrofit.create(UserService::class.java)
+
+    }
 
 }
