@@ -11,10 +11,9 @@ import com.example.app_repositories_github.model.Repositories
 import com.example.app_repositories_github.model.Repository
 
 
-class AdapterList(val onClick: (Repository) -> Unit) :
-    RecyclerView.Adapter<UsersViewHolder>() {
+class AdapterList : RecyclerView.Adapter<UsersViewHolder>() {
 
-    var listRepositories : MutableList<Repository> = mutableListOf()
+    private var listRepositories : MutableList<Repository> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val view =
@@ -42,7 +41,6 @@ class AdapterList(val onClick: (Repository) -> Unit) :
 
 class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    //val buttonDetails = itemView.binding<Button>(R.id.buttonDetails)
 
     private val binding = ListUsersBinding.bind(itemView)
 

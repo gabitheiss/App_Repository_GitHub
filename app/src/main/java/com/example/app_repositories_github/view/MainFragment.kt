@@ -2,20 +2,18 @@ package com.example.app_repositories_github.view
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_repositories_github.R
 import com.example.app_repositories_github.adapter.AdapterList
-import com.example.app_repositories_github.databinding.ListUsersBinding
 import com.example.app_repositories_github.databinding.MainFragmentBinding
 import com.example.app_repositories_github.model.Repository
 import com.example.app_repositories_github.view_model.MainViewModel
 import com.google.android.material.snackbar.Snackbar
-import retrofit2.Call
-import retrofit2.Response
+
 
 class MainFragment : Fragment(R.layout.main_fragment) {
 
@@ -26,9 +24,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private lateinit var viewModel: MainViewModel
     lateinit var binding: MainFragmentBinding
     lateinit var recyclerView: RecyclerView
-    var adapter = AdapterList(){
-        //click
+    var adapter = AdapterList(){ click ->
+        viewModel.fetchRepositories(click.owner.nameUser, click.name)
+        requireActivity().replaceView(PullsFragment())
     }
+
+
 
     private val repositoryObserver = Observer<List<Repository>> { newList ->
         adapter.refresh(newList)

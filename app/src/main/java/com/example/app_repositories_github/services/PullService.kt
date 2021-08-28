@@ -7,10 +7,10 @@ import retrofit2.http.Path
 
 interface PullService {
 
-    @GET("/repos/{nameUser}/{nameRepository}/pulls/10")
+    @GET("/repos/{nameUser}/{nameRepository}/pulls/")
 
     fun getPull(
         @Path("nameUser") nameUser: String,
-        @Path("nameRepository") nameRepository: String
+        @Path("nameRepository") name: String
     ): Call<List<PullRequests>>
 }

@@ -22,6 +22,9 @@ class PullsViewModel : ViewModel() {
         repository.searchPulls(nameUser,nameREspository){
             _pullsResponse.value
         }
+        error?.let {
+            _error.value
+        }
 
     }
 
