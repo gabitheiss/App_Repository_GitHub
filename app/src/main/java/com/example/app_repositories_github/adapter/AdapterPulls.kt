@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.app_repositories_github.R
+import com.example.app_repositories_github.databinding.ListPullsBinding
 import com.example.app_repositories_github.databinding.PullsFragmentBinding
 import com.example.app_repositories_github.model.PullRequests
-import com.example.app_repositories_github.model.Repository
+
 
 class AdapterPulls(val onClickList: (PullRequests) -> Unit) :
     RecyclerView.Adapter<PullRequestsViewHolder>() {
@@ -42,10 +43,9 @@ class AdapterPulls(val onClickList: (PullRequests) -> Unit) :
 
 
 
-
 class PullRequestsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val binding = PullsFragmentBinding.bind(itemView)
+    private val binding = ListPullsBinding.bind(itemView)
 
     fun bind(pullRequests: PullRequests) {
 

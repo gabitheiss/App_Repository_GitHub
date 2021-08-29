@@ -1,10 +1,10 @@
 package com.example.app_repositories_github.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_repositories_github.R
@@ -24,11 +24,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private lateinit var viewModel: MainViewModel
     lateinit var binding: MainFragmentBinding
     lateinit var recyclerView: RecyclerView
-    var adapter = AdapterList(){ click ->
-        viewModel.fetchRepositories(click.owner.nameUser, click.name)
-        requireActivity().replaceView(PullsFragment())
-    }
-
+    var adapter = AdapterList(
+        { click ->
+            viewModel.fetchRepositories(click.owner.nameUser, click.name)
+            requireActivity().replaceView(PullsFragment())},
+    )
 
 
     private val repositoryObserver = Observer<List<Repository>> { newList ->

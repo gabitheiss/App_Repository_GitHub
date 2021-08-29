@@ -7,13 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.app_repositories_github.R
 import com.example.app_repositories_github.databinding.ListUsersBinding
-import com.example.app_repositories_github.model.Repositories
+import com.example.app_repositories_github.model.PullRequests
 import com.example.app_repositories_github.model.Repository
+import com.example.app_repositories_github.model.User
 
 
-class AdapterList : RecyclerView.Adapter<UsersViewHolder>() {
 
-    private var listRepositories : MutableList<Repository> = mutableListOf()
+class AdapterList(val onClickList: (PullRequests) -> Unit, val user: User, val body: String, val title: String, val date: String) :
+    RecyclerView.Adapter<AdapterList.UsersViewHolder>() {
+
+    private var listRepositories: MutableList<Repository> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         val view =
@@ -21,9 +24,42 @@ class AdapterList : RecyclerView.Adapter<UsersViewHolder>() {
         return UsersViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
+    fun onBindViewHolder(holder: UsersViewHolder, position: Int, pullRequests: PullRequests) {
         listRepositories[position].apply {
             holder.bind(this)
+
+            holder.itemView.setOnClickListener {
+                onClickList(pullRequests)
+            }
+        }
+
+
+        fun refresh(repository: List<Repository>) {
+            listRepositories = mutableListOf()
+            listRepositories.addAll(repository)
+            notifyDataSetChanged()
+        }
+    }
+
+
+    class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+
+        private val binding = ListUsersBinding.bind(itemView)
+
+        fun bind(repository: Repository) {
+
+            binding.idNameRepo.text = repository.name
+            binding.idNameUser.text = repository.owner.nameUser
+
+            repository.let {
+                Glide.with(itemView.context)
+                    .load(it.owner.imageUser)
+                    .into(binding.idImageUser)
+            }
+            binding.idDescription.text = repository.description
+            binding.idStars.text = repository.stars
+            binding.idForks.text = repository.forks
         }
     }
 
@@ -31,31 +67,16 @@ class AdapterList : RecyclerView.Adapter<UsersViewHolder>() {
         return listRepositories.size
     }
 
-    fun refresh(repository : List<Repository>) {
-        listRepositories = mutableListOf()
-        listRepositories.addAll(repository)
-        notifyDataSetChanged()
-    }
-}
+    override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
+        listRepositories[position].apply {
+            holder.bind(this)
 
-
-class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-
-    private val binding = ListUsersBinding.bind(itemView)
-
-    fun bind(repository: Repository) {
-
-        binding.idNameRepo.text = repository.name
-        binding.idNameUser.text = repository.owner.nameUser
-
-        repository.let {
-            Glide.with(itemView.context)
-                .load(it.owner.imageUser)
-                .into(binding.idImageUser)
+            holder.itemView.setOnClickListener {
+                onClickList(
+                    PullRequests(user, title, body, date)
+                )
+            }
         }
-        binding.idDescription.text = repository.description
-        binding.idStars.text = repository.stars
-        binding.idForks.text = repository.forks
+
     }
 }
