@@ -30,9 +30,6 @@ class PullsViewModel : ViewModel() {
                     _error.value
                 }
             }
-            error?.let {
-                _error.value
-            }
         }
     }
 }

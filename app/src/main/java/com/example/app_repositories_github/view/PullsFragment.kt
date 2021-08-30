@@ -71,7 +71,7 @@ class PullsFragment : Fragment(R.layout.pulls_fragment) {
 
         val owner = arguments?.getString(OWNER)
         val repo = arguments?.getString(REPO)
-        viewModel.fetchPulls(OWNER,REPO)
+        viewModel.fetchPulls(owner.toString(),repo.toString())
 
     }
 }

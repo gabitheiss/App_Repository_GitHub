@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.app_repositories_github.R
 
-fun FragmentActivity.replaceFragment(fragment: Fragment, @IdRes recyclerView: Int = R.id.recyclerViewPulls){
+fun FragmentActivity.replaceFragment(fragment: Fragment, @IdRes recyclerView: Int = R.id.container){
     supportFragmentManager.beginTransaction()
         .replace(recyclerView, fragment)
         .commitNow()

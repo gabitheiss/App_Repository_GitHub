@@ -26,7 +26,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private lateinit  var binding: MainFragmentBinding
     lateinit var recyclerView: RecyclerView
     private val adapter = AdapterList{
-        requireActivity().replaceFragment(PullsFragment.newInstance("nameUser","name"))
+        requireActivity().replaceFragment(PullsFragment.newInstance(nameUser = it.owner.nameUser,name = it.name))
     }
 
     private val repositoryObserver = Observer<List<Repository>> { newList ->
