@@ -9,7 +9,7 @@ interface PullService {
 
     @GET("/repos/{nameUser}/{nameRepository}/pulls/")
 
-    fun getPull(
+    fun getPulls(
         @Path("nameUser") nameUser: String,
         @Path("nameRepository") name: String
     ): Call<List<PullRequests>>

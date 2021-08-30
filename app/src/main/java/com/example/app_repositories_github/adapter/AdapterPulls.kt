@@ -11,22 +11,23 @@ import com.example.app_repositories_github.databinding.PullsFragmentBinding
 import com.example.app_repositories_github.model.PullRequests
 
 
-class AdapterPulls(val onClickList: (PullRequests) -> Unit) :
+class AdapterPulls(val itemClick: (PullRequests) -> Unit) :
     RecyclerView.Adapter<PullRequestsViewHolder>() {
 
     private var listOfPulls: MutableList<PullRequests> = mutableListOf()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PullRequestsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_pulls, parent, false)
-        return PullRequestsViewHolder(view)
+        return LayoutInflater.from(parent.context).inflate(R.layout.list_pulls, parent, false).let {
+                PullRequestsViewHolder(it)
+            }
     }
 
 
     override fun onBindViewHolder(holder: PullRequestsViewHolder, position: Int) {
         listOfPulls[position].apply {
             holder.bind(this)
-            holder.itemView.setOnClickListener { onClickList(this) }
+            holder.itemView.setOnClickListener { itemClick(this) }
         }
     }
 

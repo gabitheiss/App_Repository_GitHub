@@ -18,8 +18,8 @@ class MainViewModel : ViewModel() {
     val _error = MutableLiveData<String>()
     var error : LiveData<String> = _error
 
-    fun fetchRepositories(context: Context) {
-        val repository = RepositoryUsers(context)
+    fun fetchRepositories() {
+        val repository = RepositoryUsers()
         repository.searchRepo { response, error ->
             response?.let {
                 _repositoryResponse.value = it.itens

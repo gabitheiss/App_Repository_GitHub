@@ -6,7 +6,8 @@ data class PullRequests(
     @SerializedName("user") val user : User,
     val title : String,
     val body : String,
-    @SerializedName("created_at") val date : String
+    @SerializedName("created_at") val date : String,
+    @SerializedName("html_url") val urlHTML: String
 )
 
 
