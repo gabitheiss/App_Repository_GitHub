@@ -1,7 +1,7 @@
 package com.example.app_repositories_github.repository
 
 import com.example.app_repositories_github.model.PullRequests
-import com.example.app_repositories_github.model.RetrofitBuilder
+import com.example.app_repositories_github.services.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

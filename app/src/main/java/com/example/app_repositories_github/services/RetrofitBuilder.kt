@@ -1,7 +1,5 @@
-package com.example.app_repositories_github.model
+package com.example.app_repositories_github.services
 
-import com.example.app_repositories_github.services.PullService
-import com.example.app_repositories_github.services.UserService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
